@@ -1,1 +1,1 @@
-# token_sale_system
+# smartcontract-go-sale
