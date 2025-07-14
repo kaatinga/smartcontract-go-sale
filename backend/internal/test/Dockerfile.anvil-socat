@@ -1,0 +1,4 @@
+FROM ghcr.io/foundry-rs/foundry:latest
+USER root
+RUN apt-get update && apt-get install -y socat && rm -rf /var/lib/apt/lists/*
+ENTRYPOINT ["sh", "-c", "anvil --host 127.0.0.1 --port 8546 & socat TCP-LISTEN:8545,fork TCP:127.0.0.1:8546"] 
