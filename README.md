@@ -25,8 +25,18 @@ migrations/        # SQL migrations
 
 ## Testing
 
-Prepared a test suite using github.com/stretchr/testify/suite for the Go backend. To run tests, use:
+The test suite includes:
+
+- **Anvil local blockchain** (via testcontainers)
+- **Smart contract deployment** and interaction
+- **Token sale flow testing** (buy, admin functions)
+- **PostgreSQL integration** for purchase tracking
+
+### Running Tests
 
 ```bash
-go test -v ./...
+# Install dependencies
+cd smart-contracts && npm install
+
+# Run integration tests
 ```
