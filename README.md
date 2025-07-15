@@ -39,4 +39,5 @@ The test suite includes:
 cd smart-contracts && npm install
 
 # Run integration tests
+go test -v ./...
 ```
