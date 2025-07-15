@@ -42,7 +42,6 @@ func (s *IntegrationSuite) SetupSuite() {
 	s.printContainerLogs = true
 
 	// 3. Start Anvil container with network alias
-
 	network, err := bochka.NewNetwork(ctx)
 	s.NoError(err)
 
@@ -56,7 +55,6 @@ func (s *IntegrationSuite) SetupSuite() {
 		s.T().Fatalf("Failed to start Postgres: %v", err)
 	}
 
-	// Start Anvil with network alias
 	anvilReq := testcontainers.ContainerRequest{
 		Image:        "anvil-socat",
 		ExposedPorts: []string{"8545/tcp"},
@@ -75,7 +73,6 @@ func (s *IntegrationSuite) SetupSuite() {
 	s.NoError(err)
 	s.AnvilContainer = anvilC
 
-	// For external access (from host) - this is what your test needs
 	anvilHost, err := anvilC.Host(ctx)
 	s.NoError(err)
 	anvilPort, err := anvilC.MappedPort(ctx, "8545")

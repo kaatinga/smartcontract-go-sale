@@ -40,14 +40,12 @@ func (s *IntegrationSuite) setupSmartContractsProject() {
 }
 
 func (s *IntegrationSuite) compileContracts() error {
-	// Compute absolute path to smart-contracts
 	smartContractsDir, err := filepath.Abs("../../../smart-contracts")
 	if err != nil {
 		return fmt.Errorf("failed to get absolute path: %w", err)
 	}
 	s.T().Logf("compileContracts: using smart-contracts dir: %s", smartContractsDir)
 
-	// Compile contracts
 	cmd := exec.Command("npx", "hardhat", "compile")
 	cmd.Dir = smartContractsDir
 
@@ -181,7 +179,6 @@ func (s *IntegrationSuite) TestAnvilRPC() {
 
 	s.Require().NotNil(s.AnvilContainer, "Anvil container should be running")
 
-	// Test that we can get container info
 	containerID := s.AnvilContainer.GetContainerID()
 	s.Require().NotEmpty(containerID, "Container should have an ID")
 
@@ -258,7 +255,7 @@ func (s *IntegrationSuite) TestTokenSaleFlow() {
 	s.Require().NoError(err)
 	tx := types.NewTransaction(0, saleAddr, big.NewInt(0), 800000, big.NewInt(1e9), input)
 	s.NoError(err)
-	_ = tx // skip sending tx in this minimal example
+	_ = tx // skip sending tx
 
 	// TODO: Simulate buyTokens call (skipping actual tx send for brevity)
 	//  In a real test, use bind. Transact to send tx and check balances
